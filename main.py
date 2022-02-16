@@ -86,7 +86,7 @@ updater.dispatcher.add_handler(CallbackQueryHandler(main_menu, pattern='main'))
 updater.dispatcher.add_handler(CallbackQueryHandler(first_menu, pattern='m1'))
 updater.dispatcher.add_handler(CallbackQueryHandler(second_menu, pattern='m2'))
 updater.dispatcher.add_handler(CallbackQueryHandler(third_menu, pattern='m3'))
-updater.dispatcher.add_handler(CallbackQueryHandler(third_menu, pattern='m1_3'))
+updater.dispatcher.add_handler(CallbackQueryHandler(about_message, pattern='m1_3'))
 updater.dispatcher.add_error_handler(error)
 
 updater.start_polling()
