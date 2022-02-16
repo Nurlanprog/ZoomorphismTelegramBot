@@ -35,12 +35,6 @@ def third_menu(bot, update):
   bot.callback_query.message.edit_text(main_menu_message(),
                           reply_markup=third_menu_keyboard())
 
-def first_submenu(bot, update):
-  pass
-
-def second_submenu(bot, update):
-  pass
-
 def error(update, context):
     print(f'Update {update} caused error {context.error}')
 
@@ -52,12 +46,18 @@ def main_menu_keyboard():
   return InlineKeyboardMarkup(keyboard)
 
 def first_menu_keyboard():
-  keyboard = [[InlineKeyboardButton('Казахские', callback_data='m1_1')],
+    kz = InlineKeyboardButton('Казахские', callback_data='m1_1')
+    rus = InlineKeyboardButton('Русские', callback_data='m1_2')
+    jp = InlineKeyboardButton('Японские', callback_data='m1_3')
+    fr = InlineKeyboardButton('Французские', callback_data='m1_4')
+    back = InlineKeyboardButton('Назад', callback_data='main')
+
+    keyboard = [[InlineKeyboardButton('Казахские', callback_data='m1_1')],
               [InlineKeyboardButton('Русские', callback_data='m1_2')],
-              [InlineKeyboardButton('Японские', callback_data=japanCulture)],
+              [InlineKeyboardButton('Японские', callback_data='m1_3')],
               [InlineKeyboardButton('Французские', callback_data='m1_4')],
               [InlineKeyboardButton('Назад', callback_data='main')]]
-  return InlineKeyboardMarkup(keyboard)
+    return InlineKeyboardMarkup(keyboard)
 
 def second_menu_keyboard():
   keyboard = [[InlineKeyboardButton('Далее', callback_data='m2_1')],
@@ -76,7 +76,8 @@ def main_menu_message():
 def first_menu_message():
   return 'Выберите культуру:'
 
-
+def about_message(bot, update):  # handler for "About" button
+    bot.send_message(chat_id=update.callback_query.from_user.id, text="Operating since 1999")
 
 ############################# Handlers #########################################
 updater = Updater(token="5015104346:AAHvwHGrGnNiiowkI-7OQbjkCoOY0FEiHy4", use_context=True)
@@ -85,8 +86,7 @@ updater.dispatcher.add_handler(CallbackQueryHandler(main_menu, pattern='main'))
 updater.dispatcher.add_handler(CallbackQueryHandler(first_menu, pattern='m1'))
 updater.dispatcher.add_handler(CallbackQueryHandler(second_menu, pattern='m2'))
 updater.dispatcher.add_handler(CallbackQueryHandler(third_menu, pattern='m3'))
-updater.dispatcher.add_handler(CallbackQueryHandler(first_submenu, pattern='m1_1'))
-updater.dispatcher.add_handler(CallbackQueryHandler(second_submenu, pattern='m2_1'))
+updater.dispatcher.add_handler(CallbackQueryHandler(third_menu, pattern='m1_3'))
 updater.dispatcher.add_error_handler(error)
 
 updater.start_polling()
