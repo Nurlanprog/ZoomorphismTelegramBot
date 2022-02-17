@@ -1,5 +1,5 @@
 from telegram import *
-from telegram.ext import 
+from telegram.ext import *
 
 rusCulture = "Русская культура"
 japanCulture = "Japan"
@@ -80,7 +80,7 @@ def about_message(bot, update):  # handler for "About" button
     bot.send_message(chat_id=update.callback_query.from_user.id, text="Operating since 1999")
 
 ############################# Handlers #########################################
-updater = Updater(token="5015104346:AAHvwHGrGnNiiowkI-7OQbjkCoOY0FEiHy4", use_context=True)
+updater = Updater(token="5259592765:AAFudYcMaMMA879y_cG6VoOXqhoCe0iCGSY", use_context=True)
 updater.dispatcher.add_handler(CommandHandler('start', start))
 updater.dispatcher.add_handler(CallbackQueryHandler(main_menu, pattern='main'))
 updater.dispatcher.add_handler(CallbackQueryHandler(first_menu, pattern='m1'))
