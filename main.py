@@ -1,5 +1,5 @@
 from telegram import *
-from telegram.ext import *
+from telegram.ext import 
 
 rusCulture = "Русская культура"
 japanCulture = "Japan"
